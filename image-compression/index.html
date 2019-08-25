@@ -95,7 +95,7 @@
         self.processing = true;
         var reads = new FileReader();
         self.file = e.target.files[0];
-        self.picture1Size = self.file.size / 1024;
+        self.picture1Size = Math.round(self.file.size / 1024);
         reads.readAsDataURL(self.file);
         reads.onload = function (e) {
           self.picture1 = this.result;
@@ -105,7 +105,7 @@
           })
           .then(function (rst) {
             self.picture2 = rst.base64;
-            self.picture2Size = rst.fileLen / 1024;
+            self.picture2Size = Math.round(rst.fileLen / 1024);
             self.processing = false;
           })
           .catch(function (err) {
@@ -125,7 +125,7 @@
           })
           .then(function (rst) {
             self.picture2 = rst.base64;
-            self.picture2Size = rst.fileLen / 1024;
+            self.picture2Size = Math.round(rst.fileLen / 1024);
             self.processing = false;
           })
           .catch(function (err) {
