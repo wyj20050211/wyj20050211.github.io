@@ -34,7 +34,7 @@
 			<label class="mdui-textfield-label">Hash</label>
 			<input type="text" id="hash" autofocus="autofocus" class="mdui-textfield-input">
 		</div>
-		<textarea id="text" readonly="readonly" class="mdui-textfield-input" rows="5"></textarea>
+		
 
 		<a id="url" href=""><button class="mdui-btn mdui-btn-raised mdui-ripple">链接</button></a>
 	</div>
@@ -46,7 +46,6 @@
 		function go() {
 			var value = document.getElementById('hash').value;
 			document.getElementById("url").href = "magnet:?xt=urn:btih:" + value + tracker;
-			document.getElementById("text").innerText = "magnet:?xt=urn:btih:" + value + tracker;
 			setTimeout("go()", 500);
 		}
 		go()
