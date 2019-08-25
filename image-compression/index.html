@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.bootcss.com/mdui/0.4.3/css/mdui.min.css">
+  <title>纯前端图片压缩</title>
+  <meta name="theme-color" content="#9C27B0">
+</head>
+<style>
+  img {
+    max-width: 100%;
+  }
+
+  #upload {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    cursor: pointer;
+    top: 0px;
+    right: 0px;
+    opacity: 0;
+  }
+
+  .label-upload {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+</style>
+
+<body class="mdui-theme-primary-purple mdui-theme-accent-purple mdui-appbar-with-toolbar">
+  <div class="mdui-appbar mdui-appbar-fixed">
+    <div class="mdui-toolbar mdui-color-theme">
+      <span class="mdui-typo-title">纯前端图片压缩</span>
+    </div>
+  </div>
+  <br>
+  <div class="mdui-container">
+    <div id="app">
+      <div class="mdui-card">
+        <div class="mdui-card-content">
+          <div class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-purple">
+            <input type="file" id="upload" accept="image/*" @change="doUpload">
+            选择图片
+          </div>
+          <label class="mdui-float-right">压缩率: {{ yasuolv }}%</label>
+          <label class="mdui-slider">
+            <input type="range" min="1" max="99" v-model="yasuolv">
+          </label>
+          <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-purple" @click="yasuo()">压缩</button>
+          <p>选择图片，调整压缩率，按下压缩按钮即可压缩<br>图片由js在本地浏览器进行处理，不会上传服务器<br>压缩完成后右键另存为即可保存图片</p>
+          <div class="mdui-row">
+            <div class="mdui-col-xs-12 mdui-col-sm-6">
+              <div v-if="picture1Size">压缩前：{{picture1Size}}KB</div>
+              <img :src="picture1" class="mdui-shadow-2 mdui-img-rounded">
+            </div>
+            <div class="mdui-col-xs-12 mdui-col-sm-6">
+              <div v-if="picture2Size">压缩后：{{picture2Size}}KB</div>
+              <img :src="picture2" class="mdui-shadow-2 mdui-img-rounded">
+            </div>
+          </div>
+          <div v-if="processing">
+            正在处理...
+          </div>
+          <div v-if="picture2">
+            压缩完成
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+</body>
+<script src="lrz.bundle.js" charset="utf-8"></script>
+<script type="text/javascript">
+  var app = new Vue({
+    el: "#app",
+    data: {
+      imageUrl: '',
+      yasuolv: 75,
+      picture1: "",
+      picture2: "",
+      picture1Size: null,
+      picture2Size: null,
+      processing: false,
+      file: null,
+    },
+    methods: {
+      doUpload: function (e) {
+        var self = this;
+        self.processing = true;
+        var reads = new FileReader();
+        self.file = e.target.files[0];
+        self.picture1Size = self.file.size / 1024;
+        reads.readAsDataURL(self.file);
+        reads.onload = function (e) {
+          self.picture1 = this.result;
+        };
+        lrz(self.file, {
+            quality: self.yasuolv / 100
+          })
+          .then(function (rst) {
+            self.picture2 = rst.base64;
+            self.picture2Size = rst.fileLen / 1024;
+            self.processing = false;
+          })
+          .catch(function (err) {
+            console.log(err)
+            alert('压缩失败')
+          })
+          .always(function () {
+            e.target.value = null
+          });
+      },
+      yasuo: function () {
+        var self = this;
+        self.processing = true;
+        self.picture2 = null;
+        lrz(self.file, {
+            quality: self.yasuolv / 100
+          })
+          .then(function (rst) {
+            self.picture2 = rst.base64;
+            self.picture2Size = rst.fileLen / 1024;
+            self.processing = false;
+          })
+          .catch(function (err) {
+            console.log(err)
+            alert('压缩失败')
+          })
+          .always(function () {});
+      },
+    },
+  });
+</script>
+<script src="https://cdn.bootcss.com/mdui/0.4.3/js/mdui.min.js"></script>
+
+</html>
