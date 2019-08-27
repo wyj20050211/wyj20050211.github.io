@@ -37,7 +37,7 @@
     <div id="app">
       <div class="mdui-card">
         <div class="mdui-card-content">
-          <div class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-purple">
+          <div class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme">
             <input type="file" id="upload" accept="image/*" @change="doUpload">
             选择图片
           </div>
@@ -45,8 +45,10 @@
           <label class="mdui-slider">
             <input type="range" min="1" max="99" v-model="yasuolv">
           </label>
-          <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-purple" @click="yasuo()">压缩</button>
-          <p>选择图片，调整压缩率，按下压缩按钮即可压缩<br>图片由js在本地浏览器进行处理，不会上传服务器<br>压缩完成后右键另存为即可保存图片</p>
+          <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme" @click="yasuo()">压缩</button>
+          <div class="mdui-typo">
+          	<p>使用说明：<br>选择图片，调整压缩率，按下压缩按钮即可压缩<br>图片由js在本地浏览器进行处理，不会上传服务器<br>压缩完成后右键另存为即可保存图片<br>本页面使用了开源项目<a href="https://github.com/think2011/localResizeIMG/">localResizeIMG</a></p>
+          </div>
           <div class="mdui-row">
             <div class="mdui-col-xs-12 mdui-col-sm-6">
               <div v-if="picture1Size">压缩前：{{picture1Size}}KB</div>
