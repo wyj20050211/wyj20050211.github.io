@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta name="theme-color" content="#EC407A">
+<title>Hello World</title>
+<link rel="stylesheet" href="https://cdn.bootcss.com/mdui/0.4.3/css/mdui.min.css">
+<link rel="stylesheet" href="https://cdn.bootcss.com/dplayer/1.25.0/DPlayer.min.css">
+<script src="https://cdn.bootcss.com/dplayer/1.25.0/DPlayer.min.js"></script>
+<style type="text/css">a {text-decoration: none}</style>
+</head>
+<body class="mdui-theme-primary-pink mdui-theme-accent-pink mdui-appbar-with-toolbar">
+<div class="mdui-appbar mdui-appbar-fixed">
+<div class="mdui-toolbar mdui-color-theme-400">
+<span class="mdui-typo-title mdui-text-color-white-text">Hello World</span>
+</div>
+</div>
+<br>
+<div class="mdui-container">
+	<div id="v1" class="mdui-shadow-2"></div>
+	<script>
+		const dp = new DPlayer({
+    container: document.getElementById('v1'),
+    screenshot: true,
+    volume: 1.0,
+    mutex: true,
+    theme: '#EC407A',
+    video: {
+        url: 'https://gss3.baidu.com/6LZ0ej3k1Qd3ote6lo7D0j9wehsv/tieba-smallvideo/607272_1559542df663fd7a74a248b7af6d4ebf.mp4',
+        pic: 'https://ae01.alicdn.com/kf/Hf88fd6406d6c492098af78923f150349X.png',
+    },
+});
+
+	</script>
+</div>
+<br>
+<script src="https://cdn.bootcss.com/mdui/0.4.3/js/mdui.min.js"></script>
+</body>
+</html>
