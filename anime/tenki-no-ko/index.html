@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <meta name="theme-color" content="#2196f3">
+    <title>天气之子</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/mdui/0.4.3/css/mdui.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/dplayer/1.25.0/DPlayer.min.css">
+    <script src="https://cdn.bootcss.com/dplayer/1.25.0/DPlayer.min.js"></script>
+    <style type="text/css">
+        a {
+            text-decoration: none
+        }
+        .mdui-card-content {
+            text-indent: 2em;
+        }
+    </style>
+</head>
+
+<body class="mdui-theme-primary-blue mdui-theme-accent-blue mdui-appbar-with-toolbar">
+    <div class="mdui-appbar mdui-appbar-fixed">
+        <div class="mdui-toolbar mdui-color-theme-400">
+            <span class="mdui-typo-title mdui-text-color-white-text">天气之子</span>
+        </div>
+    </div>
+    <br>
+    <div class="mdui-container">
+        <div class="mdui-card">
+            <div id="v1" class="mdui-shadow-2"></div>
+            <script>
+                const dp = new DPlayer({
+                    container: document.getElementById('v1'),
+                    screenshot: true,
+                    volume: 1.0,
+                    mutex: true,
+                    theme: '#2196f3',
+                    video: {
+                        url: 'https://gss3.baidu.com/6LZ0ej3k1Qd3ote6lo7D0j9wehsv/tieba-smallvideo/60_1323db0bf54281baa347a01c608b9856.mp4',
+                    },
+                });
+
+            </script>
+            <!-- 卡片的标题和副标题 -->
+            <div class="mdui-card-primary">
+                <div class="mdui-card-primary-title">天气之子</div>
+                <div class="mdui-card-primary-subtitle">Weathering with you</div>
+            </div>
+
+            <!-- 卡片的内容 -->
+            <div class="mdui-card-content">“想尝试前往，那道光芒之中”
+                高中一年级的夏天，从离岛离家出走，来到东京的帆高。但是他的生活立马变得穷困，在度过孤独的每一天之后终于找到的工作，是为古怪的超自然杂志撰稿。
+                如同预示着他接下来的命运一般，连日不断地下雨。此时，在人潮熙熙攘攘的都市一角，帆高遇到了一位少女。
+                由于某些缘故，少女·阳菜和弟弟两人一起坚强生活。而她，拥有不可思议的能力。
+                “呐，现在开始就要放晴了哦”
+                雨逐渐停止，街道笼罩在美丽的光芒中。那是仅仅在心中祈祷，就能让天空放晴的力量——</div>
+
+        </div>
+    </div>
+    <br>
+    <script src="https://cdn.bootcss.com/mdui/0.4.3/js/mdui.min.js"></script>
+</body>
+
+</html>
